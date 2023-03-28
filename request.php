@@ -7,11 +7,5 @@ $recipesStatement = $conn->prepare($sqlQuery);
 $recipesStatement->execute();
 $pokemon = $recipesStatement->fetchAll();
 
-foreach ($pokemon as $pokemons) {
 
-    $id = $pokemons['id'];
-    $name = $pokemons['identifier'];
-    
-    echo $id;
-    echo $name;
-}
+
