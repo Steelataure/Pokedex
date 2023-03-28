@@ -1,33 +1,45 @@
 <?php
-require_once "connect_db.php";
+require_once "request.php";
 
 
-$sqlQuery = 'SELECT * FROM pokemon';
-$recipesStatement = $conn->prepare($sqlQuery);
-$recipesStatement->execute();
-$pokemon = $recipesStatement->fetchAll();
-
-
-$clients_max = 10;
-foreach ($pokemon as $pokemons) {
-
-    $id = $pokemons['id'];
-    $name = $pokemons['identifier'];
-    
-    echo $id;
-    echo $name;
-}
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<title>Pokedex</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Image</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>001</td>
+				<td>Bulbasaur</td>
+				<td>Grass/Poison</td>
+				<td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"></td>
+			</tr>
+			<tr>
+				<td>002</td>
+				<td>Ivysaur</td>
+				<td>Grass/Poison</td>
+				<td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"></td>
+			</tr>
+			<tr>
+				<td>003</td>
+				<td>Venusaur</td>
+				<td>Grass/Poison</td>
+				<td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"></td>
+			</tr>
+			<!-- Add more rows for other Pokemon -->
+		</tbody>
+	</table>
 </body>
 </html>
