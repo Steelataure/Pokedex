@@ -22,10 +22,13 @@ $pokemon = $recipesStatement->fetchAll();
 $clients_max = 10;
 foreach ($pokemon as $pokemons) {
 ?>
-    <?php $compteur = $pokemons['id'];
+    <?php 
+    $id = $pokemons['id'];
+    $name = $pokemons['identifier'];
     ?>
     
 
 <?php
-    echo $compteur;
+    echo $id;
+    echo $name;
 }
