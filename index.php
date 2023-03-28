@@ -26,7 +26,7 @@ require_once "request.php";
 		</thead>
 		<tbody>
 			<?php 
-                foreach ($pokemon as $pokemons) {                   
+                foreach ($pokemon as $pokemons):                   
                     $id = $pokemons['id'];
                     $weight = $pokemons['weight'];
                     $height = $pokemons['height'];
@@ -35,23 +35,26 @@ require_once "request.php";
                     $recipesStatements = $conn->prepare($sqlRequest);
                     $recipesStatements->execute();
                     $types = $recipesStatements->fetchAll();
-                    foreach ($types as $type){
-                        if($name_type == ""){
+
+                    foreach ($types as $type):
+                        if($name_type == ""):
                             $name_type = ucfirst($type['identifier']);
-                        }else{
+                        else:
                             $name_type .= "/".ucfirst($type['identifier']);
-                        }
-                    }
+                        endif;
+                    endforeach;
                     $name = ucfirst($pokemons['identifier']);
-                    echo "<tr>";
-                    echo "<td>".$id."</td>";
-                    echo "<td><img src=\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/".$id.".png\"></td>";
-                    echo "<td>".$name."</td>";
-                    echo "<td>".$name_type."</td>";
-                    echo "<td>".$weight."</td>";    
-                    echo "<td>".$height."</td>";            
-                    echo "</tr>";
-                }
+                    ?> 
+                    <tr>
+                    <td> <?= $id ?></td>
+                    <td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<?= $id ?>.png"></td>
+                    <td> <?= $name ?></td>
+                    <td> <?= $name_type ?></td>
+                    <td> <?= $weight ?></td>
+                    <td> <?= $height ?></td>        
+                    </tr>
+                    <?php
+                endforeach;
             ?>
 		</tbody>
 	</table>
