@@ -1,17 +1,9 @@
-<?php
-require_once "request.php";
-?>
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Pokedex</title>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
-</head>
+<?php
+require_once "request.php";
+require_once "header.php";
+?>
 <body>
 	<table class="table-striped" id="example">
 		<thead>
