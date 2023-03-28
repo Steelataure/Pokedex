@@ -6,14 +6,14 @@ require_once "request.php";
 <head>
 	<title>Pokedex</title>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 <body>
-	<table id="example">
+	<table class="table-striped" id="example">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -61,12 +61,6 @@ require_once "request.php";
 </body>
 </html>
 
-<script type="text/javascript" src="js/jquery-3.6.4.min.js"></script>
-
-<script src="js/datatables.min.js">
-    
-    $(document).ready(function () {
-    $('#example').DataTable();
-});
-
-</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
