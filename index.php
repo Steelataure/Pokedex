@@ -1,16 +1,15 @@
 <?php
 error_reporting(0);
-
-https://raw.githubusercontent.com/Yarkis01/PokeAPI/images/sprites/2/regular.png
 ?>
 <!DOCTYPE html>
 <html>
 <?php
-require "request.php";
-require "header.php";
-require "navigation.php";
+require_once "request.php";
+require_once "header.php";
+require_once "navigation.php";
 $minmissions = file_get_contents('https://api-pokemon-fr.vercel.app/api/v1/pokemon');
 $response = json_decode($minmissions, true); 
+
 ?>
 <body>
 	<table class="table-striped" id="example">
@@ -31,12 +30,14 @@ $response = json_decode($minmissions, true);
                 foreach($response as $key => $row):
                     if ($key < 1) continue;
 
+                     
                     $id = $row['pokedexId'];
                     $image = $row['sprites']["regular"];
                     $weight = $row['weight'];
                     $height = $row['height'];
                     $name_type = "";
                     $name = $row["name"]['fr'];
+                    
 
                     if ($row["types"][0]['name'] && $row["types"][1]['name']):
                         $type = $row["types"][0]['name'] .  "/" . $row["types"][1]['name'];
@@ -45,13 +46,14 @@ $response = json_decode($minmissions, true);
                     endif;
                     ?> 
                     <tr>
-                        <td> <?= $id ?></td>
-                        <td><img src="<?= $image ?>"></td>
-                        <td> <?=  $name  ?></td>
-                        <td> <?= $type ?></td>
-                        <td> <?= $weight ?></td>
-                        <td> <?= $height ?></td> 
-                        <td><a type="button" class="btn btn-dark" onclick="window.location.href='detail.php?id=<?= $id ?>'">Détail</button></td>   
+                    <td> <?= $id ?></td>
+                    <td><img src="<?= $image ?>"></td>
+                    <td> <?=  $name  ?></td>
+                    <td> <?= $type ?></td>
+                    <td> <?= $weight ?></td>
+                    <td> <?= $height ?></td> 
+                    <td><a type="button" class="btn btn-dark" onclick="window.location.href='detail.php?id=<?= $id ?>'">Detail</button>
+                    </td>   
                     </tr>
                     <?php
                 endforeach;
