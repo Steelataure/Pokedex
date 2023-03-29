@@ -1,13 +1,20 @@
 <?php
 error_reporting(0);
+
 ?>
 <!DOCTYPE html>
 <html>
 <?php
-require_once "request.php";
+
+$arrContextOptions=array(
+    "ssl"=>array(
+        "verify_peer"=>false,
+        "verify_peer_name"=>false,
+    ),
+);
 require_once "header.php";
 require_once "navigation.php";
-$minmissions = file_get_contents('https://api-pokemon-fr.vercel.app/api/v1/pokemon');
+$minmissions = file_get_contents('https://api-pokemon-fr.vercel.app/api/v1/pokemon', false, stream_context_create($arrContextOptions));
 $response = json_decode($minmissions, true); 
 
 ?>

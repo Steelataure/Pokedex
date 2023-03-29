@@ -1,6 +1,13 @@
 <?php
 error_reporting(0);
+$arrContextOptions=array(
+    "ssl"=>array(
+        "verify_peer"=>false,
+        "verify_peer_name"=>false,
+    ),
+);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,11 +18,10 @@ error_reporting(0);
 </head>
 <?php
 
-require_once "request.php";
 require_once "header.php";
 require_once "navigation.php";
 
-$minmissions = file_get_contents('https://api-pokemon-fr.vercel.app/api/v1/pokemon/'.$_GET['id']);
+$minmissions = file_get_contents('https://api-pokemon-fr.vercel.app/api/v1/pokemon/'.$_GET['id'], false, stream_context_create($arrContextOptions));
 $response = json_decode($minmissions, true); 
 
 $id = $response['pokedexId'];
@@ -57,7 +63,7 @@ endif;
             <li><strong>Taille :</strong> <?= $height?></li>
             <li><strong>Poids :</strong> <?= $weight?></li>
             <li><strong>Capacités : </strong><?= $talents?></li>    
-            <li><strong>PV : </strong><?= $talents?></li>     
+            <li><strong>PV : </strong><?= $pv?></li>     
             <li><strong>Attaque : </strong><?= $atk?></li>            
             <li><strong>Défense : </strong><?= $def?></li>  
             <li><strong>Attaque Spé. : </strong><?= $spe_atk?></li>      
