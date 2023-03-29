@@ -14,6 +14,7 @@ require_once "header.php";
 				<th>Type</th>
                 <th>Weight</th>
                 <th>Height</th>
+                <th>Detail</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,7 +44,9 @@ require_once "header.php";
                     <td> <?= $name ?></td>
                     <td> <?= $name_type ?></td>
                     <td> <?= $weight ?></td>
-                    <td> <?= $height ?></td>        
+                    <td> <?= $height ?></td> 
+                    <td><button type="button" class="btn btn-dark" onclick="window.location.href='detail.php/?id=<?= $id ?>'">Detail</button>
+                    </td>   
                     </tr>
                     <?php
                 endforeach;
