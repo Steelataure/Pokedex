@@ -1,9 +1,15 @@
+<?php
+error_reporting(0);
+?>
 <!DOCTYPE html>
 <html>
 <?php
 require_once "request.php";
 require_once "header.php";
 require_once "navigation.php";
+$minmissions = file_get_contents('https://api-pokemon-fr.vercel.app/api/v1/pokemon');
+$response = json_decode($minmissions, true); 
+
 ?>
 <body>
 	<table class="table-striped" id="example">
@@ -11,42 +17,42 @@ require_once "navigation.php";
 			<tr>
 				<th>ID</th>
 				<th>Image</th>
-				<th>Name</th>
+				<th>Nom</th>
 				<th>Type</th>
-                <th>Weight</th>
-                <th>Height</th>
-                <th>Detail</th>
+                <th>Poids</th>
+                <th>Taille</th>
+                <th>Détail</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
-                foreach ($pokemon as $pokemons):                   
-                    $id = $pokemons['id'];
-                    $weight = $pokemons['weight'];
-                    $height = $pokemons['height'];
-                    $name_type = "";
-                    $sqlRequest = "SELECT * FROM pokemon_types,`types` where pokemon_types.type_id = `types`.id and pokemon_id =".$id;
-                    $recipesStatements = $conn->prepare($sqlRequest);
-                    $recipesStatements->execute();
-                    $types = $recipesStatements->fetchAll();
+                //boucle sur l'array
+                foreach($response as $key => $row):
+                    if ($key < 1) continue;
 
-                    foreach ($types as $type):
-                        if($name_type == ""):
-                            $name_type = ucfirst($type['identifier']);
-                        else:
-                            $name_type .= "/".ucfirst($type['identifier']);
-                        endif;
-                    endforeach;
-                    $name = ucfirst($pokemons['identifier']);
+                     
+                    $id = $row['pokedexId'];
+                    $image = $row['sprites']["regular"];
+                    $weight = $row['weight'];
+                    $height = $row['height'];
+                    $name_type = "";
+                    $name = $row["name"]['fr'];
+                    
+
+                    if ($row["types"][0]['name'] && $row["types"][1]['name']):
+                        $type = $row["types"][0]['name'] .  "/" . $row["types"][1]['name'];
+                    elseif ($row["types"][0]['name']):
+                        $type = $row["types"][0]['name'];
+                    endif;
                     ?> 
                     <tr>
                     <td> <?= $id ?></td>
-                    <td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<?= $id ?>.png"></td>
-                    <td> <?= $name ?></td>
-                    <td> <?= $name_type ?></td>
+                    <td><img src="<?= $image ?>"></td>
+                    <td> <?=  $name  ?></td>
+                    <td> <?= $type ?></td>
                     <td> <?= $weight ?></td>
                     <td> <?= $height ?></td> 
-                    <td><button type="button" class="btn btn-dark" onclick="window.location.href='detail.php/?id=<?= $id ?>'">Detail</button>
+                    <td><a type="button" class="btn btn-dark" onclick="window.location.href='detail.php/?id=<?= $id ?>'">Detail</button>
                     </td>   
                     </tr>
                     <?php
