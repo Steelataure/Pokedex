@@ -3,6 +3,7 @@
 <?php
 require_once "request.php";
 require_once "header.php";
+require_once "navigation.php";
 ?>
 <body>
 	<table class="table-striped" id="example">
