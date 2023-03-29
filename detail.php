@@ -57,7 +57,7 @@ endif;
             <li><strong>Taille :</strong> <?= $height?></li>
             <li><strong>Poids :</strong> <?= $weight?></li>
             <li><strong>Capacités : </strong><?= $talents?></li>    
-            <li><strong>PV : </strong><?= $talents?></li>     
+            <li><strong>PV : </strong><?= $vit?></li>     
             <li><strong>Attaque : </strong><?= $atk?></li>            
             <li><strong>Défense : </strong><?= $def?></li>  
             <li><strong>Attaque Spé. : </strong><?= $spe_atk?></li>      
